@@ -1,4 +1,5 @@
 use std::io::stdin;
+
 #[derive(Debug)]
 pub enum Instruction {
     PointerIncrement,
