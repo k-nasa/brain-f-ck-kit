@@ -82,6 +82,20 @@ impl Machine {
         }
     }
 
+    pub fn custom(input: &str, custom: &CustomInstruction) -> Self {
+        let instructions = input
+            .split_whitespace()
+            .map(|c| Instruction::custom(c, &custom))
+            .collect();
+
+        Self {
+            memory: [0; 256],
+            pointer: 0,
+            index: 0,
+            instructions,
+        }
+    }
+
     pub fn run(&mut self) {
         while self.index < self.instructions.len() {
             self.exec_instruction();
