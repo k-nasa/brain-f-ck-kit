@@ -27,6 +27,40 @@ impl Instruction {
             _ => Instruction::Nothing,
         }
     }
+
+    pub fn custom(input: &str, custom: &CustomInstruction) -> Self {
+        if input == custom.pointer_increment {
+            return Instruction::PointerIncrement;
+        } else if input == custom.pointer_desrement {
+            return Instruction::PointerDesrement;
+        } else if input == custom.increment {
+            return Instruction::Increment;
+        } else if input == custom.decrement {
+            return Instruction::Decrement;
+        } else if input == custom.put {
+            return Instruction::Put;
+        } else if input == custom.get {
+            return Instruction::Get;
+        } else if input == custom.begin {
+            return Instruction::Begin;
+        } else if input == custom.end {
+            return Instruction::End;
+        } else {
+            Instruction::Nothing
+        }
+    }
+}
+
+#[derive(Debug)]
+pub struct CustomInstruction {
+    pub pointer_increment: String,
+    pub pointer_desrement: String,
+    pub increment: String,
+    pub decrement: String,
+    pub put: String,
+    pub get: String,
+    pub begin: String,
+    pub end: String,
 }
 
 pub struct Machine {
