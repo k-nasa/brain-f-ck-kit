@@ -96,7 +96,7 @@ impl Machine {
 
         let mut begin_count = 1;
         while begin_count > 0 {
-            self.index += 1;
+            self.index -= 1;
             match self.instructions[self.index] {
                 Instruction::Begin => begin_count -= 1,
                 Instruction::End => begin_count += 1,
