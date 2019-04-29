@@ -60,7 +60,7 @@ impl Machine {
             Instruction::PointerDesrement => self.pointer -= 1,
             Instruction::Increment => self.memory[self.pointer] += 1,
             Instruction::Decrement => self.memory[self.pointer] -= 1,
-            Instruction::Put => println!("{}", char::from(self.memory[self.pointer])),
+            Instruction::Put => println!("{}", char::from(self.memory_content())),
             Instruction::Get => self.exec_get_instruction(),
             Instruction::Begin => self.exec_begin_instruction(),
             Instruction::End => self.exec_end_instruction(),
@@ -75,7 +75,7 @@ impl Machine {
     }
 
     fn exec_begin_instruction(&mut self) {
-        if self.memory[self.pointer] != 0 {
+        if self.memory_content() != 0 {
             return;
         }
 
@@ -90,7 +90,7 @@ impl Machine {
         }
     }
     fn exec_end_instruction(&mut self) {
-        if self.memory[self.pointer] == 0 {
+        if self.memory_content() == 0 {
             return;
         }
 
@@ -103,5 +103,9 @@ impl Machine {
                 _ => (),
             }
         }
+    }
+
+    fn memory_content(&self) -> u8 {
+        self.memory[self.pointer]
     }
 }
