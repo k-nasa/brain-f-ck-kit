@@ -3,5 +3,3 @@ name = "brain_fu_k"
 version = "0.1.0"
 authors = ["k-nasa <htilcs1115@gmail.com>"]
 edition = "2018"
-
-[dependencies]
