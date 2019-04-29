@@ -45,4 +45,13 @@ impl Machine {
             instructions,
         }
     }
+
+    pub fn run(&mut self) {
+        while self.index < self.instructions.len() {
+            self.exec_instruction();
+            self.index += 1;
+        }
+    }
+
+    fn exec_instruction(&mut self) {}
 }
