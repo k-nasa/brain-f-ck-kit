@@ -67,4 +67,41 @@ impl Machine {
             Instruction::Nothing => (),
         }
     }
+
+    fn exec_get_instruction(&mut self) {
+        let mut buf = String::new();
+        stdin().read_line(&mut buf).unwrap();
+        self.memory[self.pointer] = buf.as_bytes()[0]
+    }
+
+    fn exec_begin_instruction(&mut self) {
+        if self.memory[self.pointer] != 0 {
+            return;
+        }
+
+        let mut end_count = 1;
+        while end_count > 0 {
+            self.index += 1;
+            match self.instructions[self.index] {
+                Instruction::Begin => end_count += 1,
+                Instruction::End => end_count -= 1,
+                _ => (),
+            }
+        }
+    }
+    fn exec_end_instruction(&mut self) {
+        if self.memory[self.pointer] == 0 {
+            return;
+        }
+
+        let mut begin_count = 1;
+        while begin_count > 0 {
+            self.index += 1;
+            match self.instructions[self.index] {
+                Instruction::Begin => begin_count -= 1,
+                Instruction::End => begin_count += 1,
+                _ => (),
+            }
+        }
+    }
 }
