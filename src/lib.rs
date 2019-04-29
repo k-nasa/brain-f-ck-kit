@@ -1,3 +1,4 @@
+use std::io::stdin;
 #[derive(Debug, Copy, Clone)]
 pub enum Instruction {
     PointerIncrement,
@@ -53,5 +54,17 @@ impl Machine {
         }
     }
 
-    fn exec_instruction(&mut self) {}
+    fn exec_instruction(&mut self) {
+        match self.instructions[self.index] {
+            Instruction::PointerIncrement => self.pointer += 1,
+            Instruction::PointerDesrement => self.pointer -= 1,
+            Instruction::Increment => self.memory[self.pointer] += 1,
+            Instruction::Decrement => self.memory[self.pointer] -= 1,
+            Instruction::Put => println!("{}", char::from(self.memory[self.pointer])),
+            Instruction::Get => self.exec_get_instruction(),
+            Instruction::Begin => self.exec_begin_instruction(),
+            Instruction::End => self.exec_end_instruction(),
+            Instruction::Nothing => (),
+        }
+    }
 }
