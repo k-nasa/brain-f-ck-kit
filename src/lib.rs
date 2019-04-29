@@ -30,21 +30,21 @@ impl Instruction {
 
     pub fn custom(input: &str, custom: &CustomInstruction) -> Self {
         if input == custom.pointer_increment {
-            return Instruction::PointerIncrement;
+            Instruction::PointerIncrement
         } else if input == custom.pointer_desrement {
-            return Instruction::PointerDesrement;
+            Instruction::PointerDesrement
         } else if input == custom.increment {
-            return Instruction::Increment;
+            Instruction::Increment
         } else if input == custom.decrement {
-            return Instruction::Decrement;
+            Instruction::Decrement
         } else if input == custom.put {
-            return Instruction::Put;
+            Instruction::Put
         } else if input == custom.get {
-            return Instruction::Get;
+            Instruction::Get
         } else if input == custom.begin {
-            return Instruction::Begin;
+            Instruction::Begin
         } else if input == custom.end {
-            return Instruction::End;
+            Instruction::End
         } else {
             Instruction::Nothing
         }
