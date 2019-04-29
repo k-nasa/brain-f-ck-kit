@@ -60,7 +60,7 @@ impl Machine {
             Instruction::PointerDesrement => self.pointer -= 1,
             Instruction::Increment => self.memory[self.pointer] += 1,
             Instruction::Decrement => self.memory[self.pointer] -= 1,
-            Instruction::Put => println!("{}", char::from(self.memory_content())),
+            Instruction::Put => print!("{}", char::from(self.memory_content())),
             Instruction::Get => self.exec_get_instruction(),
             Instruction::Begin => self.exec_begin_instruction(),
             Instruction::End => self.exec_end_instruction(),
