@@ -26,3 +26,23 @@ impl Instruction {
         }
     }
 }
+
+pub struct Machine {
+    memory: [u8; 256],
+    pointer: usize,
+    index: usize,
+    instructions: Vec<Instruction>,
+}
+
+impl Machine {
+    pub fn new(input: &str) -> Self {
+        let instructions = input.chars().map(Instruction::new).collect();
+
+        Self {
+            memory: [0; 256],
+            pointer: 0,
+            index: 0,
+            instructions,
+        }
+    }
+}
