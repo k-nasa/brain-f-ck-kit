@@ -52,15 +52,15 @@ impl Instruction {
 }
 
 #[derive(Debug)]
-pub struct CustomInstruction {
-    pub pointer_increment: String,
-    pub pointer_desrement: String,
-    pub increment: String,
-    pub decrement: String,
-    pub put: String,
-    pub get: String,
-    pub begin: String,
-    pub end: String,
+pub struct CustomInstruction<T: ToString> {
+    pub pointer_increment: T,
+    pub pointer_desrement: T,
+    pub increment: T,
+    pub decrement: T,
+    pub put: T,
+    pub get: T,
+    pub begin: T,
+    pub end: T,
 }
 
 pub struct Machine {
