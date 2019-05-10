@@ -28,22 +28,22 @@ impl Instruction {
         }
     }
 
-    pub fn custom(input: &str, custom: &CustomInstruction) -> Self {
-        if input == custom.pointer_increment {
+    pub fn custom(input: &str, custom: &CustomInstruction<impl ToString>) -> Self {
+        if input.to_string() == custom.pointer_increment.to_string() {
             Instruction::PointerIncrement
-        } else if input == custom.pointer_desrement {
+        } else if input.to_string() == custom.pointer_desrement.to_string() {
             Instruction::PointerDesrement
-        } else if input == custom.increment {
+        } else if input.to_string() == custom.increment.to_string() {
             Instruction::Increment
-        } else if input == custom.decrement {
+        } else if input.to_string() == custom.decrement.to_string() {
             Instruction::Decrement
-        } else if input == custom.put {
+        } else if input.to_string() == custom.put.to_string() {
             Instruction::Put
-        } else if input == custom.get {
+        } else if input.to_string() == custom.get.to_string() {
             Instruction::Get
-        } else if input == custom.begin {
+        } else if input.to_string() == custom.begin.to_string() {
             Instruction::Begin
-        } else if input == custom.end {
+        } else if input.to_string() == custom.end.to_string() {
             Instruction::End
         } else {
             Instruction::Nothing
@@ -82,7 +82,7 @@ impl Machine {
         }
     }
 
-    pub fn custom(input: &str, custom: &CustomInstruction) -> Self {
+    pub fn custom(input: &str, custom: &CustomInstruction<impl ToString>) -> Self {
         let instructions = input
             .split_whitespace()
             .map(|c| Instruction::custom(c, &custom))
